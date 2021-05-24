@@ -43,7 +43,7 @@ int main()
             {
     std::ifstream data("dataset.json", std::ifstream::binary);
     data >> cars_data;
-    float x,y;
+    double x,y;
     cout << "Enter your current coordinates"<<"\n";
     cin >> x >> y;
     FetchCabs(x, y);
