@@ -7,7 +7,7 @@ json cars_data;
 vector<pair<double, string >> res;
 void FetchCabs(double x, double y){                  //function to get closest vehicles
     priority_queue <pair<double,string>>max_heap;
-    for(json::iterator obj = cars_data.begin(); obj != cars_data.end(); obj++){  //iterating through JSON iterator
+    for(json::iterator obj = cars_data.begin(); obj != cars_data.end(); obj++){  //iterating through JSON iterator in O(N) time complexity
 
         json car = *obj;        //dereference the JSON iterator
         string id = car["id"];  //get id of the vehicle
@@ -24,12 +24,14 @@ void FetchCabs(double x, double y){                  //function to get closest v
                 }
             else if(euclidean_dis < max_heap.top().first){
                                                                 //keep only top 5 closest vehicles in heap
-                max_heap.pop();
-                max_heap.push({euclidean_dis, id});
+                max_heap.pop();   // pop in log5 time complexity
+                max_heap.push({euclidean_dis, id});  //push in log5 time complexity
 
                 }
 
         }
+
+        // Overall time complexity of the above algorithm is O(N*log5) or simply O(N), where N is the number of vehicles.
     while(!max_heap.empty()){
                                 //put top 5 closest vehicles in result array
         res.push_back({max_heap.top()});
@@ -49,10 +51,9 @@ int main()
     FetchCabs(x, y);
     for(auto itr : res){
 
-        cout<<"ID of one of the 5 closest vehicles is " << itr.second << " and euclidean distance from current location is " << itr.first << "\n";
+        cout<<"ID of one of the 5 closest vehicles is " << itr.second << " and euclidean distance from current location is " << itr.first << " unit/s" << "\n";
 
             }
 
 
             }
-
