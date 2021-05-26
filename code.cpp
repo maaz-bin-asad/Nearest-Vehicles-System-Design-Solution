@@ -34,7 +34,7 @@ void FetchCabs(double x, double y){                  //function to get closest v
         // Overall time complexity of the above algorithm is O(N*log5) or simply O(N), where N is the number of vehicles.
     while(!max_heap.empty()){
                                 //put top 5 closest vehicles in result array
-        res.push_back({max_heap.top()});
+        res.push_back(max_heap.top());
         max_heap.pop();
 
         }
